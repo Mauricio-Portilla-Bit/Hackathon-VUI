@@ -5,11 +5,12 @@ url = "https://us-central1-srbanorte23.cloudfunctions.net/dialogflowGateway"
 msg = {"sessionId": "srbanorte23",
         "queryInput": {
             "text": {
-                "text": "Hola",
+                "text": "¿cuánto saldo tengo actualmente?",
                 "languageCode": "es"
             }
         }}
 response = requests.post(url, json=msg)
+print(response.json())
 response = response.json()
 response_text = response["fulfillmentText"]
 print(response_text)
