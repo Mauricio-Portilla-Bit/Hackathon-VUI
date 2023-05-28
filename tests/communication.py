@@ -1,18 +1,22 @@
 import requests
 from cleantext import clean
 
+#text = "El correo siguiente es válido: soraya.arriaga.maldonado@banorte.com"
+#text = "Hola"
+text = "¿Cuánto saldo tengo?"
+
 url = "https://us-central1-srbanorte23.cloudfunctions.net/dialogflowGateway"
 msg = {"sessionId": "srbanorte23",
         "queryInput": {
             "text": {
-                "text": "¿cuánto saldo tengo actualmente?",
+                "text": text,
                 "languageCode": "es"
             }
         }}
 response = requests.post(url, json=msg)
 print(response.json())
 response = response.json()
-response_text = response["fulfillmentText"]
+response_text = response["fulfillmentMessages"][0]["text"]["text"][0]
 print(response_text)
 
 print("-----------------------------")
